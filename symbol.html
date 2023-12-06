@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Symbols</title>
+  </head>
+  <body>
+    <script>
+      let id1 = Symbol("Hello");
+      let id2 = Symbol("Hello");
+      // document.write(id1);                //returns error of cannot convert symbol value to string
+      document.write(id1.description+"<br>");
+
+        ////2nd example
+
+      let age = Symbol("Age");
+      let user = {
+        name: "Shehroz Arshad",
+        class: "IT",
+        [age]: 23,
+        // [age.description]:23
+      };
+      //   user[age]=25;                //we can also define value of symbol outside the object 
+      console.log(user);
+      console.log(user.class);
+      //   console.log(user.age);             //returns undefined for symbol
+      console.log(user[age]);
+
+
+
+      ////for in loop
+      user["gender"]="Male";
+      for (const key in user) {
+        document.write(key+"<br>");         //for in loop skips the key of symbol
+      }
+
+
+
+
+
+      console.log(user);                    //returns value with symbol
+      console.log(JSON.stringify(user));        //json also skips the symbol
+
+
+
+
+    // if we want to send the value of symbol to json format we can use
+      user[age.description]=23;
+      console.log(JSON.stringify(user));
+
+    </script>
+  </body>
+</html>

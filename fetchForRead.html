@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Fetch</title>
+    <style>
+      #box {
+        width: 900px;
+        height: 900px;
+        border: 1px solid black;
+        background: aqua;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Fetch Method</h1>
+    <button onclick="loadData()">Click</button>
+    <p id="box"></p>
+    <script>
+      fetch("./content/readme.txt")
+        .then(function (response) {
+          return response.text();
+        })
+        .then(function (result) {
+          console.log(result);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+
+      function loadData() {
+        fetch("https://jsonplaceholder.typicode.com/users")
+          .then(function (response) {
+            // return response.text();
+            return response.json();
+          })
+          .then(function (result) {
+            for (var key in result) {
+                let a=`${result[key].name} - ${result[key].username} - ${result[key].email} - ${result[key].address.street} - ${result[key].phone}<br><br>`;
+              document.write(a);
+
+            }
+          })
+          .catch(function (error) {
+            console.log("Error Occurred:", error);
+          });
+      }
+
+      // /simpler code is
+
+      // function loadData() {
+      //     fetch("https://jsonplaceholder.typicode.com/users")
+      //     .then(response=> response.json())
+      //     .then(result=>console.log(result))
+      //     .catch(error=>console.log(error));
+      // }
+    </script>
+  </body>
+</html>

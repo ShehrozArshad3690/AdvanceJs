@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Ajax</title>
+  </head>
+  <body>
+    <h1>Ajax Demo</h1>
+    <p id="demo">Here we load data</p>
+    <button onclick="loadText()">Click me</button>
+    <br /><br /><br /><br /><br />
+    <button onclick="loadJSON()">Click</button>
+    <script>
+      function loadText() {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+          if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("demo").innerHTML = this.responseText;
+          } else if (this.readyState == 4 && this.status == 404) {
+            document.getElementById("demo").innerHTML = "File not found";
+          }
+        };
+        xhttp.open("GET", "content/readme.txt", true); //true for asynchronous mode of data
+        xhttp.send();
+      }
+      function loadJSON() {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function(){
+          if (this.readyState == 4 && this.status == 200) {
+            console.log(this.responseText);
+          }
+        };
+        xhttp.open("GET", "https://jsonplaceholder.typicode.com/users", true);
+        xhttp.send();
+      }
+    </script>
+  </body>
+</html>

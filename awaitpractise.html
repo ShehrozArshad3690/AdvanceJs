@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>await</title>
+    <style>
+        #div{
+            width: 1330px;
+            height: 1000px;
+            border: 1px solid black;
+            background: aqua;
+        }
+    </style>
+  </head>
+  <body>
+    <p>
+        synchronous means first one data load then other
+    </p>
+    <p>
+        asynchronous brings the task1 data to background and makes the function to move on the next task2 either task1 is completely resolved or not
+        await changes the behaviour from asynchronous to synchronous and also its second functionality is that it waits for the response by taking tasks to background
+    </p>
+    <p id="div"></p>
+    <script>
+      async function test1() {
+        console.log("test 1 is startd");
+        console.log("2 : Message");
+        await console.log("3 : Message");                   //here compiler wait on this line and puts in backgronud either it is resolved or not
+        console.log("5 : Message");
+      }
+      console.log("1 : Message");
+      async function test2() {
+        await test1();                                       // here due to await, functionality of test has been converted to synchronous from asynchronous (it means that first resolve the test function then move to other line) 
+        console.log("test 2 is startd");
+    }
+    test2();
+    console.log("4 : Message");
+
+
+      ////2nd example
+
+      async function load() {
+        let response=await fetch("https://pokeapi.co/api/v2/pokemon/ditto");            ///await means ---> jb tk response na ay agy na jy
+        let obj=await response.json();                                     ///await means ---> jb tk response data json me convert na ho jy tb tk agy na jy
+        let jsonData=JSON.stringify(obj);
+        document.getElementById("div").innerHTML=jsonData;
+      }
+      async function showLoad() {
+        await load();                                   //jb tk load() function resolve na ho jy agy na jy
+      }
+      showLoad();
+    </script>
+  </body>
+</html>

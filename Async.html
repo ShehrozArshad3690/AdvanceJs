@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Async</title>
+  </head>
+  <body>
+    <script>
+      function test1() {
+        return "This is synchronous function";
+      }
+      console.log(test1());
+
+      async function test2() {
+        return "This is asynchronous function";
+      }
+      test2()
+      .then((result)=>console.log(result))
+      .catch((error)=>console.log(error));
+
+
+
+    //   let test2=async function () {
+    //     return "This is asynchronous function";
+    //   }
+    //   test2()
+    //   .then((result)=>console.log(result))
+    //   .catch((error)=>console.log(error));
+
+
+
+    //   let test2=async ()=> "This is asynchronous function";
+    //   test2()
+    //   .then((result)=>console.log(result))
+    //   .catch((error)=>console.log(error));
+    </script>
+  </body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Await</title>
+  </head>
+  <body>
+    <script>
+      //   async function test() {
+      //     await console.log("2: Message");
+      //     console.log("3: Message");
+      //     console.log("4: Message");
+      //   }
+      //   console.log("1: Message");
+      //   test();
+      //   console.log("5: Message");
+
+      async function test() {
+        try {
+          console.log("2: Message");
+          let result = await fetch("json/users.json")
+          result=await result.json();
+          console.log(result);
+          console.log("3: Message");
+        } catch (error) {
+          console.log(error);
+        }
+      }
+      async function abc() {
+        console.log("1: Message");
+        await test();
+        console.log("4: Message");
+      }
+      abc();
+    </script>
+  </body>
+</html>

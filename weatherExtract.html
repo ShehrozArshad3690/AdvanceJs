@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>accuweather</title>
+</head>
+<body>
+    <script>
+        try {
+            const api="b0edc8ce653a4fb686f70607230612";
+            const city="jahanian"
+            async function weather() {
+                let a =await fetch(`http://api.weatherapi.com/v1/current.json?key=${api}&q=${city}`);
+                let b= await a.json();
+                document.write(`Current Temperature of ${city} in Celcious is ${b.current.temp_c}`)
+            }
+            async function show(){
+                await weather();
+            }
+            show();
+        } catch (error) {
+            console.log(error);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+{
+    "company": {
+      "name": "TechCorp",
+      "location": {
+        "country": "United States",
+        "city": "Silicon Valley",
+        "address": {
+          "street": "123 Tech Lane",
+          "zipCode": "90210"
+        }
+      },
+      "departments": [
+        {
+          "name": "Engineering",
+          "employees": [
+            {
+              "id": 1,
+              "name": "John Doe",
+              "position": "Software Engineer",
+              "skills": ["Java", "Python", "JavaScript"]
+            },
+            {
+              "id": 2,
+              "name": "Alice Smith",
+              "position": "Senior Frontend Developer",
+              "skills": ["HTML", "CSS", "React"]
+            }
+          ]
+        },
+        {
+          "name": "Marketing",
+          "employees": [
+            {
+              "id": 3,
+              "name": "Bob Johnson",
+              "position": "Marketing Manager",
+              "campaigns": ["Social Media", "Email Marketing"]
+            },
+            {
+              "id": 4,
+              "name": "Eva Martinez",
+              "position": "Content Writer",
+              "skills": ["Copywriting", "SEO"]
+            }
+          ]
+        }
+      ]
+    },
+    "products": [
+      {
+        "id": "p1",
+        "name": "Smartphone X",
+        "price": 799.99,
+        "specs": {
+          "screenSize": 6.5,
+          "camera": "Dual 12MP",
+          "storage": "128GB"
+        }
+      },
+      {
+        "id": "p2",
+        "name": "Laptop Pro",
+        "price": 1499.99,
+        "specs": {
+          "screenSize": 13.3,
+          "processor": "Intel i7",
+          "storage": "512GB SSD"
+        }
+      }
+    ],
+    "partners": [
+      {
+        "name": "Global Innovations",
+        "type": "Technology",
+        "contacts": {
+          "email": "info@globalinnovations.com",
+          "phone": "+1-555-123-4567"
+        }
+      },
+      {
+        "name": "Market Dynamics",
+        "type": "Marketing",
+        "contacts": {
+          "email": "contact@marketdynamics.com",
+          "phone": "+1-555-987-6543"
+        }
+      }
+    ]
+  }

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      table {
+        border: 1px solid black;
+      }
+      td {
+        border: 1px solid black;
+      }
+      th {
+        border: 1px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Company Informatin</h2>
+    <table>
+      <tr>
+        <th>Company Name</th>
+        <td id="cName"></td>
+      </tr>
+      <tr>
+        <th>Location</th>
+        <td id="cLocation"></td>
+      </tr>
+      <tr>
+        <th>Departments</th>
+        <tbody id="cDepart"></tbody>
+      </tr>
+    </table>
+    <h2>Products</h2>
+    <table>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Specification</th>
+        <tbody id="pinfo"></tbody>
+      </tr>
+    </table>
+    <h2>Partners</h2>
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Email</th>
+        <tbody id="partInfo"></tbody>
+      </tr>
+    </table>
+    <script>
+      async function show() {
+        let response = await fetch("./json/data.json");
+        let showData = await response.json();
+        console.log(showData);
+        document.getElementById("cName").innerHTML = showData.company.name;
+        document.getElementById(
+          "cLocation"
+        ).innerHTML = `${showData.company.location.address.street} ${showData.company.location.city} ${showData.company.location.country} ${showData.company.location.address.zipCode}`;
+        const departmentsTable = document.getElementById("cDepart");
+        showData.company.departments.forEach((department) => {
+          const departmentRow = departmentsTable.insertRow();
+          const nameCell = departmentRow.insertCell(0);
+          const employeesCell = departmentRow.insertCell(1);
+
+          nameCell.innerText = department.name;
+          employeesCell.innerText = department.employees
+            .map((employee) => employee.name)
+            .join(", ");
+        });
+        // Display Products
+        const productsTable = document.getElementById("pinfo");
+        showData.products.forEach((product) => {
+          const productRow = productsTable.insertRow();
+          const idCell = productRow.insertCell(0);
+          const nameCell = productRow.insertCell(1);
+          const priceCell = productRow.insertCell(2);
+          const specsCell = productRow.insertCell(3);
+
+          idCell.innerText = product.id;
+          nameCell.innerText = product.name;
+          priceCell.innerText = product.price;
+          specsCell.innerText = `Screen Size: ${product.specs.screenSize}, Camera: ${product.specs.camera}, Storage: ${product.specs.storage}`;
+        });
+
+        // Display Partners
+        const partnersTable = document.getElementById("partInfo");
+        showData.partners.forEach((partner) => {
+          const partnerRow = partnersTable.insertRow();
+          const nameCell = partnerRow.insertCell(0);
+          const typeCell = partnerRow.insertCell(1);
+          const contactsCell = partnerRow.insertCell(2);
+
+          nameCell.innerText = partner.name;
+          typeCell.innerText = partner.type;
+          contactsCell.innerText = `Email: ${partner.contacts.email}, Phone: ${partner.contacts.phone}`;
+        });
+        console.log(
+          `Department Name: ${showData.company.departments[0].name} Employee id: ${showData.company.departments[0].employees[0].id} Employee Name: ${showData.company.departments[0].employees[0].name} Employee Position: ${showData.company.departments[0].employees[0].position}`
+        );
+        console.log(
+          `Department Name: ${showData.company.departments[0].name} Employee id: ${showData.company.departments[0].employees[1].id} Employee Name: ${showData.company.departments[0].employees[1].name} Employee Position: ${showData.company.departments[0].employees[1].position}`
+        );
+        console.log(
+          `Department Name: ${showData.company.departments[1].name} Employee id: ${showData.company.departments[1].employees[0].id} Employee Name: ${showData.company.departments[1].employees[0].name} Employee Position: ${showData.company.departments[1].employees[0].position}`
+        );
+        console.log(
+          `Department Name: ${showData.company.departments[1].name} Employee id: ${showData.company.departments[1].employees[1].id} Employee Name: ${showData.company.departments[1].employees[1].name} Employee Position: ${showData.company.departments[1].employees[1].position}`
+        );
+        console.log(
+          `Product id: ${showData.products[0].id} Product Name: ${showData.products[0].name} Product Price: ${showData.products[0].price} Product Specs: ${showData.products[0].specs.camera} ${showData.products[0].specs.screenSize} ${showData.products[0].specs.storage}`
+        );
+        console.log(
+          `Product id: ${showData.products[1].id} Product Name: ${showData.products[1].name} Product Price: ${showData.products[1].price} Product Specs: ${showData.products[1].specs.camera} ${showData.products[1].specs.screenSize} ${showData.products[1].specs.storage}`
+        );
+        console.log(
+          `Partner Name: ${showData.partners[0].name} Partner Type: ${showData.partners[0].type} Partner Email: ${showData.partners[0].contacts.email} Partner Number: ${showData.partners[0].contacts.phone}`
+        );
+        console.log(
+          `Partner Name: ${showData.partners[1].name} Partner Type: ${showData.partners[1].type} Partner Email: ${showData.partners[1].contacts.email} Partner Number: ${showData.partners[1].contacts.phone}`
+        );
+      }
+      async function applyShow() {
+        await show();
+      }
+      applyShow();
+    </script>
+  </body>
+</html>
